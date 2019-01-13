@@ -14,7 +14,7 @@ def find_version(*file_paths):
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M)
     if version_match:
         return version_match.group(1)
-    raise RuntimeError("Unable to find version string.")
+    raise RuntimeError('Unable to find version string.')
 
 
 HERE = os.path.abspath(os.path.dirname(__file__))
@@ -50,7 +50,7 @@ setup(
             'mkciud = mkciud.cli:main',
         ],
     },
-    test_suite="tests",
+    test_suite='tests',
     install_requires=[],
     python_requires='>=3.3, <4',
 )
