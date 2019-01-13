@@ -17,11 +17,11 @@ OPT_SUBTYPE_MAP={
 
 
 def print_error(message):
-    print('{0}: {1}'.format(os.path.basename(sys.argv[0]), message), file=sys.stderr)
+    print('{0}: {1}'.format('mkciud', message), file=sys.stderr)
 
 
 def print_usage():
-    print('usage: {0} [ [option] filename ]+'.format(os.path.basename(sys.argv[0])), file=sys.stderr)
+    print('usage: {0} [ [option] filename ]+'.format('mkciud'), file=sys.stderr)
     print('options:',                       file=sys.stderr)
     print('\t-cb    cloud-boothook',        file=sys.stderr)
     print('\t-cc    cloud-config',          file=sys.stderr)
@@ -43,7 +43,7 @@ def main(args=None):
 
         if len(args) == 0:
             print_usage()
-            return os.EX_OK
+            return os.EX_USAGE
 
         userdata = UserData()
         while args:
