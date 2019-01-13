@@ -1,7 +1,7 @@
 ROOT_DIR := $(shell pwd)
 
-PKG_NAME := $(shell python ./setup.py --name)
-PKG_VERSION := $(shell python ./setup.py --version)
+PKG_NAME := $(shell python3 ./setup.py --name)
+PKG_VERSION := $(shell python3 ./setup.py --version)
 
 BUILD_DIR = build
 DIST_DIR = dist
@@ -10,13 +10,15 @@ SOURCE_FILES = $(shell find src -type f -name \*.py | sed 's: :\\ :g')
 GENERATED_FILES = \
 	src/$(PKG_NAME).egg-info \
 	$(PKG_NAME)-$(PKG_VERSION).tar.gz \
+	$(PKG_NAME)-$(PKG_VERSION)-py2-none-any.whl \
+	$(PKG_NAME)-$(PKG_VERSION)-py3-none-any.whl \
 	$(PKG_NAME)-$(PKG_VERSION)-py2.py3-none-any.whl
 
 
 .PHONY : dist clean pypi pypitest
 
 dist : $(SOURCE_FILES)
-	python ./setup.py sdist --dist-dir $(DIST_DIR) bdist_wheel --dist-dir $(DIST_DIR) --bdist-dir $(BUILD_DIR)
+	python3 ./setup.py sdist --dist-dir $(DIST_DIR) bdist_wheel --dist-dir $(DIST_DIR) --bdist-dir $(BUILD_DIR)
 
 clean :
 	rm -rf $(BUILD_DIR) $(DIST_DIR) src/$(PKG_NAME).egg-info

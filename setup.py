@@ -1,7 +1,7 @@
 import io
 import os
 import re
-from setuptools import (setup, find_packages)
+from setuptools import setup
 
 
 def read(*paths):
@@ -34,13 +34,13 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3 :: Only',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     packages=['mkciud'],
@@ -51,8 +51,6 @@ setup(
         ],
     },
     test_suite="tests",
-    install_requires=[
-        "future~=0.17.1"
-    ],
-    python_requires='>=2.6, !=3.0.*, !=3.1.*, !=3.2.*, <4',
+    install_requires=[],
+    python_requires='>=3.3, <4',
 )
