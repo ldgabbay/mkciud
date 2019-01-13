@@ -72,7 +72,7 @@ def main(args=None):
                 ts = ""
                 fn = arg
             if ts not in OPT_SUBTYPE_MAP:
-                print_error("Invalid type specifier: \"\"")
+                print_error("Invalid type specifier: \"{}\"".format(ts))
                 print_type_specifiers()
                 return os.EX_USAGE
             message_subtype = OPT_SUBTYPE_MAP[ts]
