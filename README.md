@@ -1,12 +1,12 @@
-# `mkciud`
+[![PyPI version](https://badge.fury.io/py/mkciud.svg)](https://badge.fury.io/py/mkciud)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mkciud.svg)
+![PyPI - License](https://img.shields.io/pypi/l/mkciud.svg)
 
-This module assembles user-data files for use with [cloud-init](https://cloud-init.io/).
+# mkciud
 
-More information on the format of user-data files can be found [here](https://cloudinit.readthedocs.io/en/latest/topics/format.html).
+This utility constructs [cloud-init](https://cloud-init.io/) [user-data](https://cloudinit.readthedocs.io/en/latest/topics/format.html) files.
 
-This package provides a command-line utility and a module for Python 3.
-
-Type autodetection is done by looking for a recognized specifier in the first line of the file, such as `#!/bin/bash` or `#cloud-config`.
+This package provides both a command-line utility and a module for Python 3.
 
 
 ## Command-Line
@@ -45,3 +45,10 @@ for message_body, message_subtype in message_bodies_and_subtypes:
 	userdata.add(message_body, message_subtype)
 userdata.export(sys.stdout.buffer)
 ```
+
+`message_subtype` is the full MIME subtype string for the file, such as `x-shellscript` or `cloud-config`.  If `message_subtype` is omitted or `None`, it will attempt to autodetect the type.
+
+
+## Notes
+
+Type autodetection is done by looking for a recognized specifier in the first line of the file, such as `#!/bin/bash` or `#cloud-config`.
