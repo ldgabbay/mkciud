@@ -10,9 +10,7 @@ SOURCE_FILES := $(shell find src -type f -name \*.py | sed 's: :\\ :g')
 GENERATED_FILES = \
 	src/$(PKG_NAME).egg-info \
 	$(PKG_NAME)-$(PKG_VERSION).tar.gz \
-	$(PKG_NAME)-$(PKG_VERSION)-py2-none-any.whl \
-	$(PKG_NAME)-$(PKG_VERSION)-py3-none-any.whl \
-	$(PKG_NAME)-$(PKG_VERSION)-py2.py3-none-any.whl
+	$(PKG_NAME)-$(PKG_VERSION)-py3-none-any.whl
 
 
 .PHONY : dist clean pypi pypitest
