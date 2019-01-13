@@ -11,7 +11,7 @@ OPT_SUBTYPE_MAP={
     "cloud-boothook":                "cloud-boothook",
     "cc":                            "cloud-config",
     "cloud-config":                  "cloud-config",
-    "cca":                           "cloud-config-archive",
+    "ca":                            "cloud-config-archive",
     "cloud-config-archive":          "cloud-config-archive",
     "ph":                            "part-handler",
     "part-handler":                  "part-handler",
@@ -20,11 +20,10 @@ OPT_SUBTYPE_MAP={
     "io":                            "x-include-once-url",
     "include-once":                  "x-include-once-url",
     "x-include-once-url":            "x-include-once-url",
-    "i":                             "x-include-url",
+    "in":                            "x-include-url",
     "include":                       "x-include-url",
     "x-include-url":                 "x-include-url",
     "sh":                            "x-shellscript",
-    "!":                             "x-shellscript",
     "shellscript":                   "x-shellscript",
     "x-shellscript":                 "x-shellscript",
 }
@@ -42,12 +41,12 @@ def print_type_specifiers():
     print("    (default), (empty string), auto           autodetect",           file=sys.stderr)
     print("    cb, cloud-boothook                        cloud-boothook",       file=sys.stderr)
     print("    cc, cloud-config                          cloud-config",         file=sys.stderr)
-    print("    cca, cloud-config-archive                 cloud-config-archive", file=sys.stderr)
+    print("    ca, cloud-config-archive                  cloud-config-archive", file=sys.stderr)
     print("    ph, part-handler                          part-handler",         file=sys.stderr)
     print("    uj, upstart-job                           upstart-job",          file=sys.stderr)
     print("    io, include-once, x-include-once-url      x-include-once-url",   file=sys.stderr)
-    print("    i, include, x-include-url                 x-include-url",        file=sys.stderr)
-    print("    sh, !, shellscript, x-shellscript         x-shellscript",        file=sys.stderr)
+    print("    in, include, x-include-url                x-include-url",        file=sys.stderr)
+    print("    sh, shellscript, x-shellscript            x-shellscript",        file=sys.stderr)
 
 
 def main(args=None):

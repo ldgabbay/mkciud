@@ -24,12 +24,12 @@ type-specifiers:
     (default), (empty string), auto           autodetect
     cb, cloud-boothook                        cloud-boothook
     cc, cloud-config                          cloud-config
-    cca, cloud-config-archive                 cloud-config-archive
+    ca, cloud-config-archive                  cloud-config-archive
     ph, part-handler                          part-handler
     uj, upstart-job                           upstart-job
     io, include-once, x-include-once-url      x-include-once-url
-    i, include, x-include-url                 x-include-url
-    sh, !, shellscript, x-shellscript         x-shellscript
+    in, include, x-include-url                x-include-url
+    sh, shellscript, x-shellscript            x-shellscript
 ```
 
 Outputs user-data to stdout. This will be binary data, so redirect to a file.
