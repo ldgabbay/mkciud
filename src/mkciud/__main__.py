@@ -5,14 +5,28 @@ import sys
 
 
 OPT_SUBTYPE_MAP={
-    '-cb':   'cloud-boothook',
-    '-cc':   'cloud-config',
-    '-cca':  'cloud-config-archive',
-    '-ph':   'part-handler',
-    '-uj':   'upstart-job',
-    '-io':   'x-include-once-url',
-    '-i':    'x-include-url',
-    '-sh':   'x-shellscript',
+    '':                              None,
+    'auto':                          None,
+    'cb':                            'cloud-boothook',
+    'cloud-boothook':                'cloud-boothook',
+    'cc':                            'cloud-config',
+    'cloud-config':                  'cloud-config',
+    'cca':                           'cloud-config-archive',
+    'cloud-config-archive':          'cloud-config-archive',
+    'ph':                            'part-handler',
+    'part-handler':                  'part-handler',
+    'uj':                            'upstart-job',
+    'upstart-job':                   'upstart-job',
+    'io':                            'x-include-once-url',
+    'include-once':                  'x-include-once-url',
+    'x-include-once-url':            'x-include-once-url',
+    'i':                             'x-include-url',
+    'include':                       'x-include-url',
+    'x-include-url':                 'x-include-url',
+    'sh':                            'x-shellscript',
+    '!':                             'x-shellscript',
+    'shellscript':                   'x-shellscript',
+    'x-shellscript':                 'x-shellscript',
 }
 
 
@@ -21,16 +35,19 @@ def print_error(message):
 
 
 def print_usage():
-    print('usage: {0} [ [option] filename ]+'.format('mkciud'), file=sys.stderr)
-    print('options:',                       file=sys.stderr)
-    print('\t-cb    cloud-boothook',        file=sys.stderr)
-    print('\t-cc    cloud-config',          file=sys.stderr)
-    print('\t-cca   cloud-config-archive',  file=sys.stderr)
-    print('\t-ph    part-handler',          file=sys.stderr)
-    print('\t-uj    upstart-job',           file=sys.stderr)
-    print('\t-io    x-include-once-url',    file=sys.stderr)
-    print('\t-i     x-include-url',         file=sys.stderr)
-    print('\t-sh    x-shellscript',         file=sys.stderr)
+    print('usage: {0} [ [type-specifier:]filename ]+'.format('mkciud'), file=sys.stderr)
+
+def print_type_specifiers():
+    print('type-specifiers:',                                                   file=sys.stderr)
+    print('    (default), (empty string), auto           autodetect',           file=sys.stderr)
+    print('    cb, cloud-boothook                        cloud-boothook',       file=sys.stderr)
+    print('    cc, cloud-config                          cloud-config',         file=sys.stderr)
+    print('    cca, cloud-config-archive                 cloud-config-archive', file=sys.stderr)
+    print('    ph, part-handler                          part-handler',         file=sys.stderr)
+    print('    uj, upstart-job                           upstart-job',          file=sys.stderr)
+    print('    io, include-once, x-include-once-url      x-include-once-url',   file=sys.stderr)
+    print('    i, include, x-include-url                 x-include-url',        file=sys.stderr)
+    print('    sh, !, shellscript, x-shellscript         x-shellscript',        file=sys.stderr)
 
 
 def main(args=None):
@@ -46,21 +63,21 @@ def main(args=None):
             return os.EX_USAGE
 
         userdata = UserData()
-        while args:
-            arg = args.pop(0)
-            if arg in OPT_SUBTYPE_MAP:
-                if len(args) == 0:
-                    print_usage()
-                    return os.EX_USAGE
-                filename = args.pop(0)
-                with open(filename, 'r') as f:
-                    message_body = f.read()
-                message_subtype = OPT_SUBTYPE_MAP[arg]
+        for arg in args:
+            sep = arg.find(':')
+            if sep != -1:
+                ts = arg[:sep]
+                fn = arg[sep+1:]
             else:
-                filename = arg
-                with open(filename, 'r') as f:
-                    message_body = f.read()
-                message_subtype = None
+                ts = ''
+                fn = arg
+            if ts not in OPT_SUBTYPE_MAP:
+                print_error('Invalid type specifier: ""')
+                print_type_specifiers()
+                return os.EX_USAGE
+            message_subtype = OPT_SUBTYPE_MAP[ts]
+            with open(fn, 'r') as f:
+                message_body = f.read()
             userdata.add(message_body, message_subtype)
         userdata.export(sys.stdout.buffer)
         return os.EX_OK
