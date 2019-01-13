@@ -1,6 +1,6 @@
 # `mkciud`
 
-This module assembles user-data files for use with [`cloud-init`](https://cloud-init.io/).
+This module assembles user-data files for use with [cloud-init](https://cloud-init.io/).
 
 More information on the format of user-data files can be found [here](https://cloudinit.readthedocs.io/en/latest/topics/format.html).
 
