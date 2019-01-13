@@ -47,7 +47,7 @@ setup(
     package_dir={'': 'src'},
     entry_points={
         'console_scripts': [
-            'mkciud = mkciud.cli:main',
+            'mkciud = mkciud.__main__:main',
         ],
     },
     test_suite='tests',

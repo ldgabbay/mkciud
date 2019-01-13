@@ -35,20 +35,23 @@ def print_usage():
 
 def main(args=None):
     if args is None:
-        args = sys.argv[1:]
-
-    if len(args) == 0:
-        print_usage()
-        return 0
+        args = sys.argv
 
     try:
+        
+        args = args[1:]
+
+        if len(args) == 0:
+            print_usage()
+            return os.EX_OK
+
         userdata = UserData()
         while args:
             arg = args.pop(0)
             if arg in OPT_SUBTYPE_MAP:
                 if len(args) == 0:
                     print_usage()
-                    return -1
+                    return os.EX_USAGE
                 filename = args.pop(0)
                 with open(filename, 'r') as f:
                     message_body = f.read()
@@ -60,7 +63,12 @@ def main(args=None):
                 message_subtype = None
             userdata.add(message_body, message_subtype)
         userdata.export(sys.stdout.buffer)
-        return 0
+        return os.EX_OK
+
     except Exception as e:
         print_error(str(e))
-        return -1
+        return os.EX_SOFTWARE
+
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv))
