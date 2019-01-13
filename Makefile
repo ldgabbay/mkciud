@@ -6,7 +6,7 @@ PKG_VERSION := $(shell python3 ./setup.py --version)
 BUILD_DIR = build
 DIST_DIR = dist
 
-SOURCE_FILES = $(shell find src -type f -name \*.py | sed 's: :\\ :g')
+SOURCE_FILES := $(shell find src -type f -name \*.py | sed 's: :\\ :g')
 GENERATED_FILES = \
 	src/$(PKG_NAME).egg-info \
 	$(PKG_NAME)-$(PKG_VERSION).tar.gz \
