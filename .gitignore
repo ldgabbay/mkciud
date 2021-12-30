@@ -3,4 +3,4 @@ __pycache__/
 
 build/
 dist/
-src/mkciud.egg-info/
+mkciud.egg-info/

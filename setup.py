@@ -21,7 +21,7 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 
 setup(
     name="mkciud",
-    version=find_version("src", "mkciud", "__init__.py"),
+    version=find_version("src", "__init__.py"),
     description="A utility for building cloud-init user-data.",
     long_description=read(HERE, "README.md"),
     long_description_content_type="text/markdown",
@@ -40,11 +40,14 @@ setup(
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3 :: Only",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     packages=["mkciud"],
-    package_dir={"": "src"},
+    package_dir={"mkciud": "src"},
     entry_points={
         "console_scripts": [
             "mkciud = mkciud.__main__:main",
